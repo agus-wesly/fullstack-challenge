@@ -1,0 +1,9 @@
+[submodule "fc-product-service"]
+	path = fc-product-service
+	url = git@github.com:agus-wesly/fc-product-service.git
+[submodule "fc-order-service"]
+	path = fc-order-service
+	url = git@github.com:agus-wesly/fc-order-service.git
+[submodule "fc-gateway"]
+	path = fc-gateway
+	url = git@github.com:agus-wesly/fc-gateway.git
