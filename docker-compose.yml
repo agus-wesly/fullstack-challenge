@@ -1,0 +1,65 @@
+version: '3.8'
+
+networks:
+  default:
+
+services:
+  db:
+    container_name: db
+    image: mysql:latest
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      MYSQL_USERNAME: $MYSQL_USERNAME
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+    ports:
+      - $MYSQL_LOCAL_PORT:$MYSQL_DOCKER_PORT
+    volumes:
+      - mysql-volume:/var/lib/mysql:rw
+      - ./mysql-db:/docker-entrypoint-initdb.d/
+    networks:
+      - default
+  cache:
+    container_name: cache
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '$REDIS_LOCAL_PORT:$REDIS_DOCKER_PORT'
+    volumes: 
+      - cache:/data
+  rabbitmq:
+    container_name: rabbitmq
+    restart: unless-stopped
+    image: rabbitmq:3
+    ports:
+      - $RABBITMQ_LOCAL_PORT:$RABBITMQ_DOCKER_PORT
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  # nestjs-app:
+  #   container_name: nestjs-app
+  #   # depends_on:
+  #   #   - mysql-db
+  #   build: ./nestjs-app
+  #   restart: unless-stopped
+  #   env_file: ./.env
+  #   ports:
+  #     - $NESTJS_APP_LOCAL_PORT:$NESTJS_APP_DOCKER_PORT
+  #   environment:
+  #     - DB_HOST=$MYSQLDB_HOST
+  #     - DB_USER=$MYSQLDB_USER
+  #     - DB_PASSWORD=$MYSQLDB_PASSWORD
+  #     - DB_DATABASE=$MYSQLDB_DATABASE
+  #     - DB_PORT=$MYSQLDB_DOCKER_PORT
+  #   stdin_open: true
+  #   tty: true
+  #   volumes:
+  #     - ./nestjs-app:/app
+  #     - /app/node_modules
+  #   networks:
+  #     - default
+volumes: 
+  mysql-volume:
+  cache:
+    driver: local
+  rabbitmq_data:
