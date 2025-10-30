@@ -4,6 +4,10 @@ By : Wesly
 
 ### How to run
 - Make sure you have configured .env file in each subfolder
+### Run this command for current dir and each subdir
+```bash
+cp .env.example .env
+```
 - You can just copy the .env.example into .env for each subfolder
 #### Running using `docker-compose`
 ```bash
@@ -59,4 +63,5 @@ curl --request POST \
 curl --request GET \
   --url http://localhost:5555/api/orders/product/9dc7a495-c565-4b20-ac7e-84640d5ff63b
 ```
+
 
