@@ -8,7 +8,8 @@ By : Wesly
 ```bash
 cp .env.example .env
 ```
-- You can just copy the .env.example into .env for each subfolder
+- You can also modify that .env according to your configuration
+
 #### Running using `docker-compose`
 ```bash
 docker compose up --build
@@ -63,5 +64,6 @@ curl --request POST \
 curl --request GET \
   --url http://localhost:5555/api/orders/product/9dc7a495-c565-4b20-ac7e-84640d5ff63b
 ```
+
 
 
