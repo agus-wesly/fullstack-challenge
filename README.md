@@ -1,4 +1,5 @@
 ## Fullstack Developer Test Challenge
+A Small microservice application that uses event driven communication, caching, and implementing clean, modular architecture
 By : Wesly
 
 ### How to run
@@ -43,7 +44,7 @@ curl --request GET \
   --url http://localhost:5555/api/products/9dc7a495-c565-4b20-ac7e-84640d5ff63b
 ```
 
-#### POST /orders/
+#### POST /orders/ (Replace with productId you get from the POST /products)
 ```shell
 curl --request POST \
   --url http://localhost:5555/api/orders \
@@ -58,3 +59,4 @@ curl --request POST \
 curl --request GET \
   --url http://localhost:5555/api/orders/product/9dc7a495-c565-4b20-ac7e-84640d5ff63b
 ```
+
